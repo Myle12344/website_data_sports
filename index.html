@@ -1,131 +1,419 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Data Sports</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Football Intelligence</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
-body{
+*{
     margin:0;
-    font-family:Arial, sans-serif;
-    background:#04142b;
-    color:white;
+    padding:0;
+    box-sizing:border-box;
 }
 
+body{
+    font-family:'Inter',sans-serif;
+    background:#041326;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+
 header{
+    width:100%;
+    padding:25px 80px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:20px 60px;
-    background:#061a35;
+    position:fixed;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(12px);
+    background:rgba(4,19,38,0.85);
+    border-bottom:1px solid rgba(255,255,255,0.05);
 }
 
 .logo{
     font-size:28px;
-    font-weight:bold;
-    color:#ff6b6b;
+    font-weight:800;
+    background:linear-gradient(90deg,#ff7a59,#ff4da6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+nav{
+    display:flex;
+    gap:40px;
 }
 
 nav a{
-    color:white;
     text-decoration:none;
-    margin:0 15px;
+    color:#d7e0ea;
+    font-weight:500;
+    transition:0.3s;
 }
 
+nav a:hover{
+    color:#ff7a59;
+}
+
+.nav-btn{
+    padding:14px 26px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(90deg,#ff7a59,#ff4da6);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+}
+
+/* HERO */
+
 .hero{
+    min-height:100vh;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:80px 60px;
+    padding:140px 80px 80px;
+    position:relative;
 }
 
-.hero-text{
-    max-width:500px;
+.hero::before{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:#ff4da6;
+    filter:blur(180px);
+    opacity:0.15;
+    top:-150px;
+    right:-100px;
+}
+
+.hero-left{
+    max-width:650px;
+    z-index:2;
+}
+
+.hero-badge{
+    display:inline-block;
+    padding:10px 18px;
+    border-radius:999px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.1);
+    margin-bottom:30px;
+    color:#ff7a59;
+    font-size:14px;
 }
 
 .hero h1{
-    font-size:64px;
-    line-height:1.1;
+    font-size:78px;
+    line-height:1.05;
+    margin-bottom:30px;
+    font-weight:800;
 }
 
-.orange{
-    color:#ff7b54;
-}
-
-.pink{
-    color:#ff4d8d;
+.gradient{
+    background:linear-gradient(90deg,#ff7a59,#ff4da6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
 }
 
 .hero p{
-    color:#cfd8e3;
-    line-height:1.7;
+    font-size:20px;
+    line-height:1.8;
+    color:#b7c4d1;
+    margin-bottom:40px;
 }
 
-.buttons{
-    margin-top:30px;
+.hero-buttons{
+    display:flex;
+    gap:20px;
 }
 
-.btn{
-    padding:15px 30px;
-    border-radius:12px;
+.primary-btn{
+    padding:18px 32px;
     border:none;
-    margin-right:15px;
-    cursor:pointer;
+    border-radius:16px;
+    background:linear-gradient(90deg,#ff7a59,#ff4da6);
+    color:white;
     font-size:16px;
+    font-weight:600;
+    cursor:pointer;
 }
 
-.btn-primary{
-    background:linear-gradient(90deg,#ff7b54,#ff4d8d);
-    color:white;
-}
-
-.btn-secondary{
+.secondary-btn{
+    padding:18px 32px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,0.15);
     background:transparent;
-    border:1px solid #ff4d8d;
     color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+/* HERO RIGHT */
+
+.hero-right{
+    width:520px;
+    z-index:2;
+}
+
+.dashboard{
+    background:#071b34;
+    border-radius:30px;
+    padding:30px;
+    border:1px solid rgba(255,255,255,0.06);
+    box-shadow:0 20px 80px rgba(0,0,0,0.35);
+}
+
+.dashboard-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:30px;
+}
+
+.small-card{
+    background:#0b2444;
+    padding:20px;
+    border-radius:20px;
+    width:48%;
+}
+
+.small-card h3{
+    color:#ff7a59;
+    margin-bottom:10px;
+}
+
+.chart{
+    height:220px;
+    border-radius:20px;
+    background:linear-gradient(
+        180deg,
+        rgba(255,122,89,0.25),
+        rgba(255,77,166,0.03)
+    );
+    position:relative;
+    overflow:hidden;
+}
+
+.chart::before{
+    content:'';
+    position:absolute;
+    width:120%;
+    height:2px;
+    background:linear-gradient(90deg,#ff7a59,#ff4da6);
+    top:50%;
+    left:-10%;
+    transform:rotate(-12deg);
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+    padding:0 80px 100px;
+}
+
+.stat-box{
+    background:#071b34;
+    padding:35px;
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+.stat-box h2{
+    font-size:42px;
+    margin-bottom:10px;
+    background:linear-gradient(90deg,#ff7a59,#ff4da6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* FEATURES */
+
+.section{
+    padding:120px 80px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:80px;
+}
+
+.section-title h2{
+    font-size:54px;
+    margin-bottom:20px;
+}
+
+.section-title p{
+    color:#aab7c5;
+    max-width:800px;
+    margin:auto;
+    line-height:1.8;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+}
+
+.feature-card{
+    background:#071b34;
+    padding:40px;
+    border-radius:28px;
+    border:1px solid rgba(255,255,255,0.05);
+    transition:0.3s;
+}
+
+.feature-card:hover{
+    transform:translateY(-10px);
+}
+
+.feature-icon{
+    width:70px;
+    height:70px;
+    border-radius:18px;
+    background:linear-gradient(90deg,#ff7a59,#ff4da6);
+    margin-bottom:25px;
+}
+
+.feature-card h3{
+    font-size:24px;
+    margin-bottom:20px;
+}
+
+.feature-card p{
+    color:#aab7c5;
+    line-height:1.8;
+}
+
+/* MATCH REPORT */
+
+.report{
+    background:#071b34;
+    margin:0 80px 120px;
+    border-radius:30px;
+    padding:60px;
+    border:1px solid rgba(255,255,255,0.06);
+}
+
+.report h2{
+    font-size:42px;
+    margin-bottom:40px;
+}
+
+.report-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.report-card{
+    background:#0b2444;
+    padding:30px;
+    border-radius:22px;
+}
+
+.report-card h3{
+    margin-bottom:20px;
+    color:#ff7a59;
+}
+
+.report-card ul{
+    list-style:none;
+}
+
+.report-card li{
+    margin-bottom:14px;
+    color:#c2d0dc;
+}
+
+/* FOOTER */
+
+footer{
+    padding:80px;
+    text-align:center;
+    color:#7f91a5;
+    border-top:1px solid rgba(255,255,255,0.05);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+
+.hero{
+    flex-direction:column;
+    gap:80px;
+}
+
+.hero-right{
+    width:100%;
+}
+
+.features{
+    grid-template-columns:1fr;
 }
 
 .stats{
-    display:flex;
-    justify-content:space-around;
-    padding:40px;
-    margin:40px 60px;
-    background:#0a2345;
-    border-radius:20px;
+    grid-template-columns:1fr 1fr;
 }
 
-.stat h2{
-    color:#ff7b54;
-    font-size:40px;
+.report-grid{
+    grid-template-columns:1fr;
+}
+
+header{
+    padding:25px 30px;
+}
+
+.hero{
+    padding:140px 30px 80px;
 }
 
 .section{
-    padding:60px;
+    padding:100px 30px;
 }
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:25px;
-    margin-top:40px;
+.stats{
+    padding:0 30px 100px;
 }
 
-.card{
-    background:#0a2345;
-    padding:30px;
-    border-radius:20px;
+.report{
+    margin:0 30px 100px;
 }
 
-.card h3{
-    color:#ff7b54;
 }
 
-footer{
-    text-align:center;
-    padding:40px;
-    color:#aaa;
+@media(max-width:700px){
+
+.hero h1{
+    font-size:52px;
+}
+
+.stats{
+    grid-template-columns:1fr;
+}
+
+nav{
+    display:none;
+}
+
+.hero-buttons{
+    flex-direction:column;
+}
+
 }
 
 </style>
@@ -134,90 +422,215 @@ footer{
 <body>
 
 <header>
-    <div class="logo">DATA SPORTS</div>
 
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Over ons</a>
-        <a href="#">Projecten</a>
-        <a href="#">Contact</a>
-    </nav>
+<div class="logo">
+Football Intelligence
+</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Platform</a>
+<a href="#">AI Models</a>
+<a href="#">Match Reports</a>
+<a href="#">Contact</a>
+</nav>
+
+<button class="nav-btn">
+Request Demo
+</button>
+
 </header>
 
 <section class="hero">
 
-<div class="hero-text">
+<div class="hero-left">
+
+<div class="hero-badge">
+AI-Powered Tactical Intelligence Platform
+</div>
+
 <h1>
-Data.<br>
-Inzicht.<br>
-<span class="orange">Prestaties.</span>
+Understand<br>
+Football Through<br>
+<span class="gradient">
+Behavior & Patterns
+</span>
 </h1>
 
 <p>
-Wij verzamelen en analyseren sportdata
-om betere prestaties mogelijk te maken.
+Realtime tactical intelligence for coaches, analysts and clubs.
+Detect patterns, predict decisions and generate automated
+match insights using AI and football data.
 </p>
 
-<div class="buttons">
-<button class="btn btn-primary">Onze diensten</button>
-<button class="btn btn-secondary">Contact</button>
+<div class="hero-buttons">
+
+<button class="primary-btn">
+Explore Platform
+</button>
+
+<button class="secondary-btn">
+Watch Demo
+</button>
+
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<div class="dashboard">
+
+<div class="dashboard-top">
+
+<div class="small-card">
+<h3>Predictability</h3>
+<h2>81%</h2>
+<p>Player cuts inside under pressure</p>
+</div>
+
+<div class="small-card">
+<h3>Entropy Score</h3>
+<h2>2.4</h2>
+<p>High tactical adaptability</p>
 </div>
 
 </div>
 
-<div>
-<img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1200"
-width="500"
-style="border-radius:30px;">
+<div class="chart"></div>
+
+</div>
+
 </div>
 
 </section>
 
 <section class="stats">
 
-<div class="stat">
-<h2>50+</h2>
-<p>Tevreden klanten</p>
+<div class="stat-box">
+<h2>12M+</h2>
+<p>Tracked Actions</p>
 </div>
 
-<div class="stat">
-<h2>120+</h2>
-<p>Projecten</p>
+<div class="stat-box">
+<h2>95%</h2>
+<p>Pattern Recognition Accuracy</p>
 </div>
 
-<div class="stat">
-<h2>1M+</h2>
-<p>Datapunten</p>
+<div class="stat-box">
+<h2>1,200+</h2>
+<p>Player Profiles</p>
 </div>
 
-<div class="stat">
-<h2>98%</h2>
-<p>Succes score</p>
+<div class="stat-box">
+<h2>24/7</h2>
+<p>Realtime Match Intelligence</p>
 </div>
 
 </section>
 
 <section class="section">
 
-<h2 style="font-size:42px;">
-Slimme data voor betere prestaties
+<div class="section-title">
+
+<h2>
+Tactical Intelligence Engine
 </h2>
 
-<div class="cards">
+<p>
+Analyze player behavior, decision-making and contextual
+patterns using advanced machine learning and football data.
+</p>
 
-<div class="card">
-<h3>Data Analyse</h3>
-<p>Geavanceerde analyses voor sportteams.</p>
 </div>
 
-<div class="card">
-<h3>Visualisatie</h3>
-<p>Duidelijke dashboards en inzichten.</p>
+<div class="features">
+
+<div class="feature-card">
+
+<div class="feature-icon"></div>
+
+<h3>
+Decision Modeling
+</h3>
+
+<p>
+Understand how players behave under pressure, in space,
+and against different tactical systems.
+</p>
+
 </div>
 
-<div class="card">
-<h3>Optimalisatie</h3>
-<p>Verbeter prestaties met slimme data.</p>
+<div class="feature-card">
+
+<div class="feature-icon"></div>
+
+<h3>
+Pattern Recognition
+</h3>
+
+<p>
+Detect hidden tactical sequences and recurring movements
+that traditional analysis often misses.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon"></div>
+
+<h3>
+Realtime Match Alerts
+</h3>
+
+<p>
+Receive live tactical warnings and opponent tendencies
+during matches and training sessions.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="report">
+
+<h2>
+Automated Match Reports
+</h2>
+
+<div class="report-grid">
+
+<div class="report-card">
+
+<h3>
+Opponent Insights
+</h3>
+
+<ul>
+<li>61% attacks through left half-space</li>
+<li>Right-back delivers early crosses under low pressure</li>
+<li>Pressing intensity drops after 65th minute</li>
+<li>Winger cuts inside in 78% of situations</li>
+</ul>
+
+</div>
+
+<div class="report-card">
+
+<h3>
+Coach Recommendations
+</h3>
+
+<ul>
+<li>Force winger to outside channel</li>
+<li>Press immediately after first touch</li>
+<li>Block passing lane to central midfield</li>
+<li>Trigger high press after backward passes</li>
+</ul>
+
 </div>
 
 </div>
@@ -225,7 +638,9 @@ Slimme data voor betere prestaties
 </section>
 
 <footer>
-© 2026 Data Sports
+
+© 2026 Football Intelligence Platform — Tactical AI for Elite Football
+
 </footer>
 
 </body>
